@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport  xmlns="http://jasperreports.sourceforge.net/jasperreports"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+               xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components"
+               name="A4_1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1a030a77-b1dd-47bb-a609-146108664ec8">
+    <style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+            <topPen lineWidth="0.5" lineColor="#000000"/>
+            <leftPen lineWidth="0.5" lineColor="#000000"/>
+            <bottomPen lineWidth="0.5" lineColor="#000000"/>
+            <rightPen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+            <topPen lineWidth="0.5" lineColor="#000000"/>
+            <leftPen lineWidth="0.5" lineColor="#000000"/>
+            <bottomPen lineWidth="0.5" lineColor="#000000"/>
+            <rightPen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+            <topPen lineWidth="0.5" lineColor="#000000"/>
+            <leftPen lineWidth="0.5" lineColor="#000000"/>
+            <bottomPen lineWidth="0.5" lineColor="#000000"/>
+            <rightPen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+
+
+    <subDataset name="medicamentLists" uuid="f1839b39-0a0c-4a84-84fb-3efb8915ffa8">
+
+        <field name="nomMedicament" class="java.lang.String"/>
+        <field name="prixUnitaire" class="java.lang.Integer"/>
+        <field name="quantitePrescrite" class="java.lang.Integer"/>
+        <variable name="sommeTotaux" class="java.lang.Integer" calculation="Sum">
+            <variableExpression><![CDATA[$F{prixUnitaire} * $F{quantitePrescrite}]]></variableExpression>
+        </variable>
+    </subDataset>
+    <parameter name="medicamentLists" class="java.util.List"/>
+
+
+
+    <field name="etudiant" class="org.institutsaintjean.infirmerie.Entities.Etudiant"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="88" splitType="Stretch">
+            <staticText>
+                <reportElement x="200" y="0" width="355" height="49" uuid="a5bcf9c0-38fe-403b-8ef9-38c45b700c05"/>
+                <textElement textAlignment="Center" verticalAlignment="Bottom">
+
+                </textElement>
+                <text><![CDATA[INSTITUT UNIVERSITAIRE SAINT JEAN CAMEROUN ]]></text>
+            </staticText>
+            <image>
+                <reportElement x="0" y="0" width="179" height="40" uuid="8d1d7f93-8d4a-414a-a771-b329e813cd0e"/>
+                <imageExpression><![CDATA["C:/Users/Alan/Downloads/Nouveau dossier/Saint Jean ingenieur.jpg"]]></imageExpression>
+            </image>
+            <staticText>
+                <reportElement x="176" y="37" width="203" height="45" uuid="106440b3-ef48-473f-a99f-d435ecace2fe"/>
+                <textElement textAlignment="Center" verticalAlignment="Bottom">
+                    <font size="16"/>
+                </textElement>
+                <text><![CDATA[INFIRMERIE ]]></text>
+            </staticText>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="72" splitType="Stretch">
+            <staticText>
+                <reportElement x="87" y="2" width="380" height="70" uuid="cfc775fd-a26d-41ea-ae40-ee816729c14f"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Algerian" size="25"/>
+                </textElement>
+                <text><![CDATA[FACTURE DE SOINS]]></text>
+            </staticText>
+        </band>
+    </pageHeader>
+    <columnHeader>
+        <band height="30" splitType="Stretch">
+            <staticText>
+                <reportElement x="82" y="0" width="100" height="30" uuid="7a178721-300a-4b02-a20b-1842f813fe24">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0e1312aa-d722-4454-ba88-d00059b64d4c"/>
+                </reportElement>
+                <text><![CDATA[nom]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="367" y="0" width="100" height="30" uuid="3c61007c-7408-4682-8e40-a761af353935">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2a933710-3908-496f-b510-f386e8a33ef5"/>
+                </reportElement>
+                <text><![CDATA[matricule]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="242" splitType="Stretch">
+            <textField>
+                <reportElement x="80" y="2" width="100" height="30" uuid="235a7c8e-0e61-43d2-b3f1-83d869e12309">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0e1312aa-d722-4454-ba88-d00059b64d4c"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{etudiant} != null ? $F{etudiant}.getNom() : ""]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="368" y="2" width="100" height="30" uuid="189d343a-a8d0-43e3-9618-735f64b757e6">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2a933710-3908-496f-b510-f386e8a33ef5"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{etudiant} != null ? $F{etudiant}.getMatricule() : ""]]></textFieldExpression>
+            </textField>
+            <componentElement>
+                <reportElement x="0" y="42" width="555" height="200" uuid="f131b884-f4ad-4ed9-9b87-cde26f266e66">
+                    <property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+                    <property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+                    <property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+                    <property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+                </reportElement>
+                <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components"
+                          xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+                    <datasetRun subDataset="medicamentLists" uuid="5e6246bc-6771-4942-8402-925366d529e5">
+                        <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{medicamentLists})]]></dataSourceExpression>
+                    </datasetRun>
+                    <jr:column width="150" uuid="4d091618-d1db-4831-8c9b-2456ee0c9503">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+                        <jr:tableHeader style="Table_TH" height="30" rowSpan="1"/>
+                        <jr:tableFooter style="Table_TH" height="30" rowSpan="1"/>
+                        <jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+                            <staticText>
+                                <reportElement x="0" y="0" width="150" height="30" uuid="894286c3-7a2a-42f5-985d-625fe636df3a"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font size="22"/>
+                                </textElement>
+                                <text><![CDATA[Medicament]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:columnFooter style="Table_CH" height="30" rowSpan="1"/>
+                        <jr:detailCell style="Table_TD" height="30">
+                            <textField>
+                                <reportElement x="0" y="0" width="150" height="30" uuid="e2877eb0-1758-46c3-9e8f-a9d1955d9816"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font size="16"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{nomMedicament}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="140" uuid="0e2d6cb4-d130-4bf1-9c8b-6bb0201f651f">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+                        <jr:tableHeader style="Table_TH" height="30" rowSpan="1"/>
+                        <jr:tableFooter style="Table_TH" height="30" rowSpan="1"/>
+                        <jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+                            <staticText>
+                                <reportElement x="0" y="0" width="140" height="30" uuid="78299a2b-434c-488c-822d-cac61100b1aa"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font size="22"/>
+                                </textElement>
+                                <text><![CDATA[prixUnitaire]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:columnFooter style="Table_CH" height="30" rowSpan="1"/>
+                        <jr:detailCell style="Table_TD" height="30">
+                            <textField>
+                                <reportElement x="0" y="0" width="140" height="30" uuid="98038b97-a842-4309-987c-809d454018e7"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font size="19"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{prixUnitaire}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="140" uuid="56319f4d-50c2-444a-abfe-c8b67206b5ba">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+                        <jr:tableHeader style="Table_TH" height="30" rowSpan="1"/>
+                        <jr:tableFooter style="Table_TH" height="30" rowSpan="1"/>
+                        <jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+                            <staticText>
+                                <reportElement x="0" y="0" width="140" height="30" uuid="9174a31d-3c5c-46b4-b959-5e07e291c6a3"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font size="22"/>
+                                </textElement>
+                                <text><![CDATA[Quantite]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:columnFooter style="Table_CH" height="30" rowSpan="1">
+                            <staticText>
+                                <reportElement x="0" y="0" width="140" height="30" uuid="74919cbf-f8e0-48ef-b27b-f28dce39c661"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font size="22"/>
+                                </textElement>
+                                <text><![CDATA[Total]]></text>
+                            </staticText>
+                        </jr:columnFooter>
+                        <jr:detailCell style="Table_TD" height="30">
+                            <textField>
+                                <reportElement x="0" y="0" width="140" height="30" uuid="c237851f-ded6-4b6b-b199-20da65fa017a"/>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                    <font size="14"/>
+                                </textElement>
+                                <textFieldExpression><![CDATA[$F{quantitePrescrite}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="110" uuid="085b6ca3-42ec-4dd3-80b7-321dcdb25087">
+                        <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+                        <jr:tableHeader style="Table_TH" height="30" rowSpan="1"/>
+                        <jr:tableFooter style="Table_TH" height="30" rowSpan="1"/>
+                        <jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+                            <staticText>
+                                <reportElement x="0" y="0" width="110" height="30" uuid="f908a4b9-381d-4bb1-a14d-186ff3e48306"/>
+                                <textElement textAlignment="Center" verticalAlignment="Bottom">
+                                    <font size="22"/>
+                                </textElement>
+                                <text><![CDATA[Total]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:columnFooter style="Table_CH" height="30" rowSpan="1">
+                            <textField>
+                                <reportElement x="0" y="0" width="110" height="30" uuid="9260d205-3f59-4a37-ac8d-a10d2c08f9e9"/>
+                                <textFieldExpression><![CDATA[$V{sommeTotaux}]]></textFieldExpression>
+                            </textField>
+                        </jr:columnFooter>
+                        <jr:detailCell style="Table_TD" height="30">
+                            <textField>
+                                <reportElement x="0" y="0" width="110" height="30" uuid="fec21533-938c-4585-9023-e72de104a121"/>
+                                <textFieldExpression><![CDATA[$F{prixUnitaire} * $F{quantitePrescrite}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                </jr:table>
+            </componentElement>
+        </band>
+    </detail>
+    <pageFooter>
+        <band height="170" splitType="Stretch">
+            <staticText>
+                <reportElement x="398" y="10" width="150" height="150" uuid="4d9f918a-ecb6-4fe5-9610-1b72005eafb8">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="1.0"/>
+                </box>
+                <textElement textAlignment="Center">
+                    <font size="22"/>
+                </textElement>
+                <text><![CDATA[SIGNATURE]]></text>
+            </staticText>
+        </band>
+    </pageFooter>
+</jasperReport>
